@@ -100,4 +100,58 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 300);
         }
     });
+
+    // Aggiungi questo codice per gestire lo swipe delle immagini su mobile
+    const photosWrapper = document.querySelector('.photos-wrapper');
+    const images = photosWrapper.querySelectorAll('img');
+    const dotsContainer = document.querySelector('.navigation-dots');
+    
+    let currentIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+
+    // Crea i punti di navigazione
+    images.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+    });
+
+    // Gestione touch events
+    photosWrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    photosWrapper.addEventListener('touchmove', (e) => {
+        currentX = e.touches[0].clientX;
+        const diff = startX - currentX;
+        const offset = -currentIndex * 100 - (diff / photosWrapper.offsetWidth) * 100;
+        photosWrapper.style.transform = `translateX(${offset}%)`;
+    });
+
+    photosWrapper.addEventListener('touchend', (e) => {
+        const diff = startX - currentX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentIndex < images.length - 1) {
+                currentIndex++;
+            } else if (diff < 0 && currentIndex > 0) {
+                currentIndex--;
+            }
+        }
+        updateSlide();
+    });
+
+    function updateSlide() {
+        photosWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlide();
+    }
 });
