@@ -3,18 +3,21 @@ document.addEventListener('DOMContentLoaded', () => {
     
     hintCards.forEach(card => {
         card.addEventListener('click', function() {
-            console.log('Card clicked'); // Per debug
             const hintContent = this.querySelector('.hint-content');
-            if (hintContent.classList.contains('hidden')) {
-                // Nascondi tutti gli indizi prima
-                document.querySelectorAll('.hint-content').forEach(h => {
-                    h.classList.add('hidden');
-                });
-                // Mostra questo indizio
+            const wasHidden = hintContent.classList.contains('hidden');
+            
+            // Chiudi tutti gli indizi
+            document.querySelectorAll('.hint-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            document.querySelectorAll('.hint-card').forEach(c => {
+                c.classList.remove('active');
+            });
+            
+            // Apri questo indizio se era chiuso
+            if (wasHidden) {
                 hintContent.classList.remove('hidden');
-            } else {
-                // Nascondi questo indizio
-                hintContent.classList.add('hidden');
+                this.classList.add('active');
             }
         });
     });

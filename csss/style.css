@@ -1137,16 +1137,63 @@ html, body {
     padding: 20px;
 }
 
+.hints-title {
+    color: #1e3c72;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 24px;
+}
+
 .hint-card {
     background: white;
     padding: 15px;
     margin-bottom: 15px;
+    border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.hint-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.hint-card h3 {
+    color: #1e3c72;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hint-toggle {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.hint-card.active .hint-toggle {
+    transform: rotate(180deg);
 }
 
 .hint-content {
-    padding: 10px 0;
+    padding: 15px 0 0;
+    color: #666;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.hint-content.show {
+    max-height: 500px;
+    opacity: 1;
+    padding: 15px 0;
+}
+
+.hint-content p {
+    margin: 8px 0;
 }
 
 .hidden {
