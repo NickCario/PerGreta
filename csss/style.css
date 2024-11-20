@@ -1064,11 +1064,13 @@ html, body {
 .regalo-container {
     min-height: 100vh;
     background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    overflow-x: hidden; /* Previene lo scroll orizzontale */
 }
 
 .regalo-split-layout {
     display: flex;
     min-height: 100vh;
+    flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
 }
 
 .puzzle-side {
@@ -1079,6 +1081,7 @@ html, body {
     justify-content: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
+    box-sizing: border-box; /* Importante per il padding */
 }
 
 .puzzle-board {
@@ -1088,35 +1091,45 @@ html, body {
     background: transparent;
     padding: 0;
     margin: 0 auto;
-    width: fit-content;
+    width: 100%; /* Cambiato da fit-content a 100% */
+    max-width: 500px; /* Aggiungi una larghezza massima */
+    aspect-ratio: 1.5; /* Mantiene le proporzioni */
     box-sizing: border-box;
-    border: none;
 }
 
 .puzzle-piece {
+    width: 100% !important; /* Sovrascrivi gli stili inline */
+    height: 100% !important;
+    aspect-ratio: 1.5;
     cursor: pointer;
     border: 2px solid transparent;
     transition: transform 0.2s ease;
-    display: block;
-    margin: 0 auto;
-}
-
-.puzzle-piece:hover {
-    transform: scale(0.98);
-}
-
-.puzzle-piece.selected {
-    border: 2px solid #ff4b6e;
-}
-
-.puzzle-controls {
-    display: none;
+    background-size: 300% 300% !important; /* Aggiustato per le dimensioni corrette */
 }
 
 .regalo-content-side {
     width: 50%;
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
+    box-sizing: border-box;
+}
+
+/* Media queries per la responsività */
+@media screen and (max-width: 768px) {
+    .regalo-split-layout {
+        flex-direction: column;
+    }
+
+    .puzzle-side,
+    .regalo-content-side {
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .puzzle-board {
+        max-width: 90vw;
+        aspect-ratio: 1.5;
+    }
 }
 
 /* Stili per gli indizi */

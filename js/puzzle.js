@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedPiece = null;
     const size = 3;
     
-    // Aumentate le dimensioni del puzzle
-    const containerWidth = Math.min(window.innerWidth * 0.45, 800);
-    const pieceWidth = Math.floor(containerWidth / size);
-    const pieceHeight = Math.floor(pieceWidth * (667/1000));
-    
-    const puzzleWidth = pieceWidth * size;
-    const puzzleHeight = pieceHeight * size;
+    // Calcola le dimensioni in base al container
+    const boardRect = board.getBoundingClientRect();
+    const boardWidth = boardRect.width;
+    const boardHeight = boardWidth / 1.5; // Mantiene l'aspect ratio dell'immagine
     
     // Imposta le dimensioni del board
-    board.style.width = `${puzzleWidth}px`;
-    board.style.height = `${puzzleHeight}px`;
+    board.style.height = `${boardHeight}px`;
+    
+    // Calcola le dimensioni dei pezzi
+    const pieceWidth = boardWidth / size;
+    const pieceHeight = boardHeight / size;
     
     function createPuzzle() {
         pieces = Array.from({ length: size * size }, (_, i) => i);
@@ -37,11 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = Math.floor(pos / size);
             const col = pos % size;
             
-            piece.style.width = `${pieceWidth}px`;
-            piece.style.height = `${pieceHeight}px`;
             piece.style.backgroundImage = 'url("images/lubiana.jpg")';
-            piece.style.backgroundSize = `${puzzleWidth}px ${puzzleHeight}px`;
-            piece.style.backgroundPosition = `${-col * pieceWidth}px ${-row * pieceHeight}px`;
+            piece.style.backgroundPosition = `${-col * 100}% ${-row * 100}%`;
             
             piece.addEventListener('click', () => selectPiece(piece));
             board.appendChild(piece);
@@ -67,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Crea un'immagine completa
         const completeImage = document.createElement('div');
-        completeImage.style.width = `${puzzleWidth}px`;
-        completeImage.style.height = `${puzzleHeight}px`;
+        completeImage.style.width = `${boardWidth}px`;
+        completeImage.style.height = `${boardHeight}px`;
         completeImage.style.backgroundImage = 'url("images/lubiana.jpg")';
-        completeImage.style.backgroundSize = `${puzzleWidth}px ${puzzleHeight}px`;
+        completeImage.style.backgroundSize = `${boardWidth}px ${boardHeight}px`;
         completeImage.style.transition = 'opacity 0.5s ease';
         
         board.appendChild(completeImage);
