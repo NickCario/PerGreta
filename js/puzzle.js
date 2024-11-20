@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = Math.floor(pos / size);
             const col = pos % size;
             
-            piece.style.backgroundImage = 'url("images/lubiana.jpg")';
+            piece.style.backgroundImage = 'url("/PerGreta/images/lubiana.jpg")';
             piece.style.backgroundPosition = `${-col * 100}% ${-row * 100}%`;
             
             piece.addEventListener('click', () => selectPiece(piece));
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const completeImage = document.createElement('div');
         completeImage.style.width = `${boardWidth}px`;
         completeImage.style.height = `${boardHeight}px`;
-        completeImage.style.backgroundImage = 'url("images/lubiana.jpg")';
+        completeImage.style.backgroundImage = 'url("/PerGreta/images/lubiana.jpg")';
         completeImage.style.backgroundSize = `${boardWidth}px ${boardHeight}px`;
         completeImage.style.transition = 'opacity 0.5s ease';
         
