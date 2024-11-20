@@ -1058,3 +1058,92 @@ html, body {
         height: 25vh;
     }
 }
+
+/* Aggiungi questi stili alla fine del file style.css */
+
+.regalo-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+}
+
+.regalo-split-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.puzzle-side {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: transparent;
+    padding: 0;
+    margin: 0 auto;
+    width: fit-content;
+    box-sizing: border-box;
+    border: none;
+}
+
+.puzzle-piece {
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.puzzle-piece:hover {
+    transform: scale(0.98);
+}
+
+.puzzle-piece.selected {
+    border: 2px solid #ff4b6e;
+}
+
+.puzzle-controls {
+    display: none;
+}
+
+.regalo-content-side {
+    width: 50%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Stili per gli indizi */
+.hints-container {
+    padding: 20px;
+}
+
+.hint-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.hint-content {
+    padding: 10px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Aggiungi questi stili per il titolo */
+.puzzle-title {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+}
