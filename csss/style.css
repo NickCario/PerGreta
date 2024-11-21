@@ -1298,15 +1298,19 @@ html, body {
     font-size: 4em;
     color: #1e3c72;
     margin-bottom: 0.5em;
-    opacity: 0;
-    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.3s;
 }
 
 .reveal-subtitle {
     font-size: 1.5em;
     color: #666;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards 1s;
+}
+
+.reveal-modal.show .reveal-title {
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.reveal-modal.show .reveal-subtitle {
+    animation: fadeIn 1s ease forwards 0.7s;
 }
 
 @keyframes popIn {

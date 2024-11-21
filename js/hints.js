@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const revealButton = document.querySelector('.reveal-button');
-    console.log('Reveal button:', revealButton);
     
     if (revealButton) {
         revealButton.addEventListener('click', () => {
-            console.log('Button clicked!');
             const revealModal = document.createElement('div');
             revealModal.className = 'reveal-modal';
             
@@ -22,8 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Forza un reflow prima di aggiungere la classe show
             revealModal.offsetHeight;
             
-            // Mostra il modal e il suo contenuto
-            revealModal.classList.add('show');
+            // Aggiungi un piccolo delay prima di mostrare il modal
+            setTimeout(() => {
+                revealModal.classList.add('show');
+                // Forza un altro reflow per assicurarci che le animazioni partano
+                revealModal.offsetHeight;
+            }, 10);
             
             // Chiudi il modal quando si clicca fuori
             revealModal.addEventListener('click', (e) => {
