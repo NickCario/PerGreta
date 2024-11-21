@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const texts = document.querySelectorAll('.typewriter');
     const buttonContainer = document.querySelector('.button-container');
