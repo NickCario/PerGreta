@@ -37,17 +37,41 @@
     padding: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-.hint-card h3 {
-    margin: 0;
-    color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .hint-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease-out;
+    padding: 0 15px;
+    margin-top: 10px;
+    opacity: 0;
+}
+
+.hint-card.active .hint-content {
+    opacity: 1;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+.hint-card h3 {
+    margin: 0;
+    color: #333;
+    position: relative;
+    padding-right: 30px;
+}
+
+.hint-card h3::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+.hint-card.active h3::after {
+    transform: translateY(-50%) rotate(45deg);
 }
 
 .hint-content p {
