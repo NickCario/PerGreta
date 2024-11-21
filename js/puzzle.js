@@ -55,23 +55,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // Rimuovi tutti i pezzi
         board.innerHTML = '';
         
-        // Crea un'immagine completa
+        // Crea un contenitore per l'immagine
+        const imageContainer = document.createElement('div');
+        imageContainer.style.width = '100%';
+        imageContainer.style.height = '100%';
+        imageContainer.style.display = 'flex';
+        imageContainer.style.justifyContent = 'center';
+        imageContainer.style.alignItems = 'center';
+        
+        // Crea l'immagine completa
         const completeImage = document.createElement('div');
-        completeImage.style.width = '150%';
-        completeImage.style.height = '150%';
+        completeImage.style.width = '100%';
+        completeImage.style.height = '100%';
         completeImage.style.backgroundImage = 'url("/PerGreta/images/lubiana.jpg")';
-        completeImage.style.backgroundSize = 'cover';
+        completeImage.style.backgroundSize = 'contain';
         completeImage.style.backgroundPosition = 'center';
+        completeImage.style.backgroundRepeat = 'no-repeat';
         completeImage.style.transition = 'all 0.8s ease';
         completeImage.style.borderRadius = '10px';
-        completeImage.style.transform = 'scale(1.2)';
-        completeImage.style.margin = '-25%';
+        completeImage.style.transform = 'scale(0.8)';
         
-        board.appendChild(completeImage);
+        imageContainer.appendChild(completeImage);
+        board.appendChild(imageContainer);
         
         // Aggiungi una transizione fluida
         setTimeout(() => {
-            completeImage.style.transform = 'scale(1.3)';
+            completeImage.style.transform = 'scale(1.1)';
         }, 100);
     }
     
