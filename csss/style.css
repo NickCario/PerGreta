@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    background: white;
 }
 
 .typewriter-container {
@@ -1071,7 +1071,7 @@ html, body {
 
 .regalo-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+    background: white;
     overflow-x: hidden; /* Previene lo scroll orizzontale */
 }
 
@@ -1088,7 +1088,7 @@ html, body {
     width: 50%;
     padding: 40px; /* Padding uniforme per entrambi i lati */
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.8);
+    background: white;
 }
 
 .puzzle-board {
