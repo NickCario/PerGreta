@@ -1305,6 +1305,35 @@ html, body {
     color: #666;
 }
 
-.hint-card:hover {
-    background-color: #e9ecef;
+.reveal-modal.show .reveal-title {
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.reveal-modal.show .reveal-subtitle {
+    animation: fadeIn 1s ease forwards 0.7s;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
