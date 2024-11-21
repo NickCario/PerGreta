@@ -8,12 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calcola le dimensioni in base al container
     const boardRect = board.getBoundingClientRect();
     const boardWidth = boardRect.width;
-    const boardHeight = boardWidth / 1.5; // Mantiene l'aspect ratio dell'immagine
+    const boardHeight = boardWidth / 1.5;
     
-    // Imposta le dimensioni del board
     board.style.height = `${boardHeight}px`;
     
-    // Calcola le dimensioni dei pezzi
     const pieceWidth = boardWidth / size;
     const pieceHeight = boardHeight / size;
     
@@ -46,16 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function checkPuzzle() {
-        const pieces = document.querySelectorAll('.puzzle-piece');
-        let isCorrect = true;
-        
-        pieces.forEach(piece => {
-            if (piece.dataset.currentPos !== piece.dataset.correctPos) {
-                isCorrect = false;
-            }
+        const pieces = Array.from(document.querySelectorAll('.puzzle-piece'));
+        return pieces.every((piece, index) => {
+            // Confronta la posizione corrente con quella corretta
+            return parseInt(piece.dataset.correctPos) === index;
         });
-        
-        return isCorrect;
     }
     
     function showCompleteImage() {
@@ -64,11 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Crea un'immagine completa
         const completeImage = document.createElement('div');
-        completeImage.style.width = `${boardWidth}px`;
-        completeImage.style.height = `${boardHeight}px`;
+        completeImage.style.width = '100%';
+        completeImage.style.height = '100%';
         completeImage.style.backgroundImage = 'url("/PerGreta/images/lubiana.jpg")';
-        completeImage.style.backgroundSize = `${boardWidth}px ${boardHeight}px`;
+        completeImage.style.backgroundSize = 'cover';
+        completeImage.style.backgroundPosition = 'center';
         completeImage.style.transition = 'opacity 0.5s ease';
+        completeImage.style.borderRadius = '10px';
         
         board.appendChild(completeImage);
     }
@@ -78,47 +73,31 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedPiece = piece;
             piece.classList.add('selected');
         } else {
+            // Scambia i pezzi
             const pos1 = selectedPiece.dataset.currentPos;
             const pos2 = piece.dataset.currentPos;
             
             selectedPiece.dataset.currentPos = pos2;
             piece.dataset.currentPos = pos1;
             
+            // Scambia la posizione DOM
             const parent = board;
             const sibling = piece.nextSibling;
             parent.insertBefore(piece, selectedPiece);
             parent.insertBefore(selectedPiece, sibling);
             
+            // Rimuovi la selezione
             selectedPiece.classList.remove('selected');
             selectedPiece = null;
             
-            // Controlla se il puzzle è completo dopo ogni mossa
+            // Controlla se il puzzle è completo
             if (checkPuzzle()) {
-                setTimeout(() => {
-                    showCompleteImage();
-                }, 500); // Piccolo ritardo per vedere l'ultima mossa
+                console.log("Puzzle completato!"); // Debug
+                setTimeout(showCompleteImage, 500);
             }
         }
     }
     
     // Inizializza il puzzle
     createPuzzle();
-    
-    // Gestione degli indizi
-    const hintCards = document.querySelectorAll('.hint-card');
-    hintCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const hintContent = this.querySelector('.hint-content');
-            if (hintContent) {
-                if (hintContent.classList.contains('hidden')) {
-                    document.querySelectorAll('.hint-content').forEach(h => {
-                        h.classList.add('hidden');
-                    });
-                    hintContent.classList.remove('hidden');
-                } else {
-                    hintContent.classList.add('hidden');
-                }
-            }
-        });
-    });
 }); 
