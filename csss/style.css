@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     padding: 0;
@@ -1231,4 +1232,128 @@ html, body {
     max-height: 70vh;
     overflow-y: auto;
     padding: 10px;
+}
+
+.reveal-button-container {
+    text-align: center;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.reveal-button {
+    padding: 10px 25px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #1e3c72;
+    border: 2px solid #1e3c72;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reveal-button:hover {
+    background-color: #1e3c72;
+    color: white;
+    transform: scale(1.05);
+}
+
+.reveal-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.reveal-modal.show {
+    opacity: 1;
+}
+
+.reveal-content {
+    text-align: center;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.reveal-modal.show .reveal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.reveal-text {
+    padding: 20px;
+}
+
+.reveal-title {
+    font-size: 4em;
+    color: #1e3c72;
+    margin-bottom: 0.5em;
+}
+
+.reveal-subtitle {
+    font-size: 1.5em;
+    color: #666;
+}
+
+.reveal-modal.show .reveal-title {
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.reveal-modal.show .reveal-subtitle {
+    animation: fadeIn 1s ease forwards 0.7s;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-message {
+    font-size: 24px;
+    color: #1e3c72;
+    text-align: center;
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
