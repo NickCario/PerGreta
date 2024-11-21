@@ -29,21 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.className = 'reveal-modal';
             modal.innerHTML = `
                 <div class="reveal-content">
-                    <h2 class="reveal-title">Ljubljana</h2>
-                    <p class="reveal-subtitle">La capitale della Slovenia!</p>
-                    <p class="reveal-message">Preparati per un weekend romantico in questa bellissima città!</p>
+                    <h2 class="reveal-title">Andiamo a...</h2>
+                    <p class="reveal-subtitle">LUBIANA!</p>
                 </div>
             `;
             
             document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 100);
+            // Aggiungi la classe show dopo un breve delay per attivare l'animazione
+            requestAnimationFrame(() => {
+                modal.classList.add('show');
+            });
             
-            // Chiudi il modal cliccando fuori
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('show');
-                    setTimeout(() => modal.remove(), 500);
-                }
+            // Chiudi il modal cliccando ovunque
+            modal.addEventListener('click', () => {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 500);
             });
         });
     }

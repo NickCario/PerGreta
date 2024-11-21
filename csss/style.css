@@ -1271,91 +1271,63 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    visibility: hidden;
+    transition: all 0.5s ease;
     z-index: 1000;
 }
 
 .reveal-modal.show {
     opacity: 1;
+    visibility: visible;
 }
 
 .reveal-content {
     text-align: center;
-    transform: scale(0.7);
+    transform: translateY(20px);
     opacity: 0;
-    transition: all 0.5s ease;
+    transition: all 0.8s ease;
 }
 
 .reveal-modal.show .reveal-content {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
 }
 
-.reveal-text {
-    padding: 20px;
-}
-
 .reveal-title {
-    font-size: 4em;
+    font-size: 48px;
     color: #1e3c72;
-    margin-bottom: 0.5em;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards 0.3s;
 }
 
 .reveal-subtitle {
-    font-size: 1.5em;
+    font-size: 24px;
     color: #666;
-}
-
-.reveal-modal.show .reveal-title {
-    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-}
-
-.reveal-modal.show .reveal-subtitle {
-    animation: fadeIn 1s ease forwards 0.7s;
-}
-
-@keyframes popIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    70% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards 0.6s;
 }
 
 .reveal-message {
-    font-size: 24px;
-    color: #1e3c72;
-    text-align: center;
-    margin-top: 20px;
-    animation: fadeIn 0.5s ease-in;
+    font-size: 20px;
+    color: #ff4b6e;
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards 0.9s;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
