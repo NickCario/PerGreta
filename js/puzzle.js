@@ -66,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Crea l'immagine completa
         const completeImage = document.createElement('div');
-        completeImage.style.width = '100%';
-        completeImage.style.height = '100%';
+        completeImage.style.width = '1000px';
+        completeImage.style.height = '667px';
         completeImage.style.backgroundImage = 'url("/PerGreta/images/lubiana.jpg")';
         completeImage.style.backgroundSize = 'cover';
         completeImage.style.backgroundPosition = 'center';
