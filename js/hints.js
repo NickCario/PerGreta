@@ -25,8 +25,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (revealButton) {
         revealButton.addEventListener('click', () => {
             const buttonContainer = revealButton.parentElement;
-            buttonContainer.innerHTML = '<div class="reveal-text">Andiamo a Lubiana!</div>';
-            buttonContainer.classList.add('fade-in');
+            const revealText = document.createElement('div');
+            revealText.className = 'reveal-text';
+            revealText.textContent = 'Andiamo a Lubiana!';
+            
+            // Rimuovi il bottone e aggiungi il testo
+            buttonContainer.innerHTML = '';
+            buttonContainer.appendChild(revealText);
+            
+            // Forza un reflow prima di aggiungere la classe show
+            revealText.offsetHeight;
+            
+            // Aggiungi la classe show per attivare la transizione
+            setTimeout(() => {
+                revealText.classList.add('show');
+            }, 50);
         });
     }
 }); 

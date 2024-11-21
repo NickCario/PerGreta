@@ -341,15 +341,17 @@ body {
 }
 
 .hint-content {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+    padding: 15px 0 0;
+    color: #666;
+    line-height: 1.6;
     transition: all 0.3s ease;
-    padding: 0 15px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
 }
 
 .hint-content.show {
-    max-height: 300px; /* Altezza massima quando aperto */
+    max-height: 300px;
     opacity: 1;
     padding: 15px;
     margin-top: 10px;
@@ -479,10 +481,14 @@ html, body {
 }
 
 .reveal-text {
-    font-size: 24px;
+    font-size: 32px;
     color: #1e3c72;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 1s ease;
+}
+
+.reveal-text.show {
+    opacity: 1;
 }
 
 .fade-in {
@@ -490,7 +496,20 @@ html, body {
 }
 
 .hint-content {
+    padding: 15px 0 0;
+    color: #666;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.hint-content.show {
+    max-height: 300px;
     opacity: 1;
+    padding: 15px;
+    margin-top: 10px;
 }
 
 @keyframes popIn {
