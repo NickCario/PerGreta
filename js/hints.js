@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = card.querySelector('.hint-content');
 
         toggle.addEventListener('click', function() {
+            console.log('Toggle clicked');
             content.classList.toggle('hidden');
             toggle.textContent = content.classList.contains('hidden') ? '▼' : '▲';
         });
