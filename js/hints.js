@@ -28,12 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.body.appendChild(letterBox);
 
-            // Posiziona la letter-content sopra il pulsante
+            // Posiziona la letter-content esattamente dove si trova il pulsante
             const letterContent = letterBox.querySelector('.letter-content');
             letterContent.style.position = 'absolute';
             letterContent.style.top = `${rect.top}px`;
-            letterContent.style.left = '50%';
-            letterContent.style.transform = 'translateX(-50%)';
+            letterContent.style.left = `${rect.left}px`;
+            letterContent.style.width = `${rect.width}px`;
+            letterContent.style.transform = 'none';
             
             // Mostra la letter-box con un piccolo delay per l'animazione
             requestAnimationFrame(() => {
