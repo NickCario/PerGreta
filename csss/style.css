@@ -1290,18 +1290,23 @@ html, body {
     opacity: 1;
 }
 
+.reveal-text {
+    padding: 20px;
+}
+
 .reveal-title {
     font-size: 4em;
-    color: #1e3799;
+    color: #1e3c72;
     margin-bottom: 0.5em;
-    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    opacity: 0;
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards 0.3s;
 }
 
 .reveal-subtitle {
     font-size: 1.5em;
     color: #666;
-    animation: fadeIn 1s ease forwards 0.5s;
     opacity: 0;
+    animation: fadeIn 1s ease forwards 1s;
 }
 
 @keyframes popIn {
