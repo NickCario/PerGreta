@@ -24,27 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealButton = document.querySelector('.reveal-button');
     if (revealButton) {
         revealButton.addEventListener('click', () => {
-            // Crea e mostra il modal di rivelazione
-            const modal = document.createElement('div');
-            modal.className = 'reveal-modal';
-            modal.innerHTML = `
-                <div class="reveal-content">
-                    <h2 class="reveal-title">Andiamo a...</h2>
-                    <p class="reveal-subtitle">LUBIANA!</p>
-                </div>
-            `;
-            
-            document.body.appendChild(modal);
-            // Aggiungi la classe show dopo un breve delay per attivare l'animazione
-            requestAnimationFrame(() => {
-                modal.classList.add('show');
-            });
-            
-            // Chiudi il modal cliccando ovunque
-            modal.addEventListener('click', () => {
-                modal.classList.remove('show');
-                setTimeout(() => modal.remove(), 500);
-            });
+            const buttonContainer = revealButton.parentElement;
+            buttonContainer.innerHTML = '<div class="reveal-text">Andiamo a Lubiana!</div>';
+            buttonContainer.classList.add('fade-in');
         });
     }
 }); 
