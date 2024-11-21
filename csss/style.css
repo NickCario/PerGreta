@@ -341,20 +341,18 @@ body {
 }
 
 .hint-content {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
-    z-index: 1000;
+    max-height: 0;
+    opacity: 0;
     overflow: hidden;
+    transition: all 0.3s ease;
+    padding: 0 15px;
+}
+
+.hint-content.show {
+    max-height: 300px; /* Altezza massima quando aperto */
+    opacity: 1;
+    padding: 15px;
+    margin-top: 10px;
 }
 
 .content-header {
@@ -1182,9 +1180,10 @@ html, body {
 }
 
 .hint-content.show {
-    max-height: 500px;
+    max-height: 300px; /* Altezza massima quando aperto */
     opacity: 1;
-    padding: 15px 0;
+    padding: 15px;
+    margin-top: 10px;
 }
 
 .hint-content p {
@@ -1257,6 +1256,7 @@ html, body {
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 .reveal-button:hover {

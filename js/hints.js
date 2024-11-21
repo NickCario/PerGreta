@@ -1,35 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Gestione del pulsante "Rivela"
-    const revealButton = document.querySelector('.reveal-button');
-    
-    if (revealButton) {
-        revealButton.addEventListener('click', () => {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'reveal-message';
-            messageDiv.textContent = 'Andiamo a Lubiana! 💙';
-            
-            revealButton.parentNode.appendChild(messageDiv);
-            revealButton.style.display = 'none';
-        });
-    }
-
-    // Gestione dei click sugli indizi
+    // Gestione degli indizi
     const hintCards = document.querySelectorAll('.hint-card');
     
     hintCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // Toggle della classe active
+        const title = card.querySelector('h3');
+        const content = card.querySelector('.hint-content');
+        
+        title.addEventListener('click', () => {
+            // Chiudi tutti gli altri indizi
+            hintCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.querySelector('.hint-content').classList.remove('show');
+                }
+            });
+            
+            // Apri/chiudi l'indizio corrente
+            content.classList.toggle('show');
             card.classList.toggle('active');
-            
-            // Trova il contenuto dell'indizio
-            const hintContent = card.querySelector('.hint-content');
-            
-            // Se il contenuto è visibile, lo nascondiamo, altrimenti lo mostriamo
-            if (hintContent.style.maxHeight) {
-                hintContent.style.maxHeight = null;
-            } else {
-                hintContent.style.maxHeight = hintContent.scrollHeight + "px";
-            }
         });
     });
+
+    // Gestione del pulsante "Rivela il luogo"
+    const revealButton = document.querySelector('.reveal-button');
+    if (revealButton) {
+        revealButton.addEventListener('click', () => {
+            // Crea e mostra il modal di rivelazione
+            const modal = document.createElement('div');
+            modal.className = 'reveal-modal';
+            modal.innerHTML = `
+                <div class="reveal-content">
+                    <h2 class="reveal-title">Ljubljana</h2>
+                    <p class="reveal-subtitle">La capitale della Slovenia!</p>
+                    <p class="reveal-message">Preparati per un weekend romantico in questa bellissima città!</p>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 100);
+            
+            // Chiudi il modal cliccando fuori
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => modal.remove(), 500);
+                }
+            });
+        });
+    }
 }); 
