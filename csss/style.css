@@ -6,16 +6,16 @@ body {
 }
 
 .typewriter-container {
-    position: fixed;
-    left: 50%;
+    position: absolute;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
     text-align: center;
+    background: transparent;
     width: 100%;
-    max-width: 800px;
-    z-index: 1;
-    margin-top: -20px;
-    margin-bottom: 20px;
+    max-width: 600px;
+    padding: 20px;
 }
 
 .typewriter {
@@ -627,7 +627,10 @@ html, body {
     display: flex;
     height: 100vh;
     width: 100%;
-    overflow: hidden;  /* Previene lo scroll */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 /* Left side with photos */
@@ -642,7 +645,6 @@ html, body {
     background: rgba(245, 247, 250, 0.9);
     box-sizing: border-box;
     overflow: hidden;
-    backdrop-filter: blur(5px);
 }
 
 .photos-side img {
@@ -650,20 +652,18 @@ html, body {
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
-    aspect-ratio: 1;
 }
 
 /* Right side with content */
 .content-side {
     width: 60%;
-    height: 100%;
+    height: 100vh;
     background: rgba(255, 255, 255, 0.8);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    backdrop-filter: blur(5px);
 }
 
 /* Update heart animation container and add heart shape */
@@ -1231,4 +1231,43 @@ html, body {
     max-height: 70vh;
     overflow-y: auto;
     padding: 10px;
+}
+
+.typewriter-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .split-layout {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .photos-side {
+        width: 100%;
+        height: 45vh;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .photos-side img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .content-side {
+        width: 100%;
+        height: 55vh;
+    }
+
+    .typewriter-container {
+        padding: 15px;
+        margin-top: 0;
+    }
 }
