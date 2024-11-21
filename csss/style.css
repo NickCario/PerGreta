@@ -1080,13 +1080,15 @@ html, body {
     min-height: 100vh;
     flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
     align-items: flex-start; /* Allinea dall'alto */
+    margin: 0;
+    padding: 0;
 }
 
 .puzzle-side, .regalo-content-side {
     width: 50%;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
+    padding: 40px; /* Padding uniforme per entrambi i lati */
     box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 .puzzle-board {
@@ -1115,15 +1117,20 @@ html, body {
 
 .puzzle-title, .hints-title {
     color: #1e3c72;
-    margin: 20px 0;  /* Margini uniformi */
+    margin: 0; /* Rimuovi tutti i margini */
+    padding: 0; /* Rimuovi tutti i padding */
     text-align: center;
     font-size: 24px;
     line-height: 1.2;
-    padding-top: 20px; /* Padding uniforme dall'alto */
+    height: 40px; /* Altezza fissa per entrambi i titoli */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .hints-container {
-    padding: 0 20px; /* Rimuovi il padding top e mantieni solo quello laterale */
+    padding: 0; /* Rimuovi il padding */
+    margin-top: 20px; /* Aggiungi un margine superiore uniforme */
 }
 
 .hint-card {
