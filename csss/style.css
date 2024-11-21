@@ -1,82 +1,1307 @@
-.reveal-message {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease forwards;
-    font-size: 24px;
-    text-align: center;
-    margin-top: 20px;
-    color: #007bff;
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: white;
 }
 
-@keyframes fadeInUp {
+.typewriter-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    z-index: 1;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+
+.typewriter {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    border-right: 2px solid #333;
+    width: 0;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.typing {
+    animation: typing 3s steps(40, end) forwards,
+               blink-caret 0.75s step-end infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes typing {
+    from { 
+        width: 0;
+        border-right: 2px solid #333;
+    }
+    to { 
+        width: 100%;
+        border-right: transparent;
+    }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #333 }
+}
+
+.continue-button {
+    padding: 10px 25px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #1e3c72;
+    border: 2px solid #1e3c72;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.continue-button:hover {
+    background-color: #1e3c72;
+    color: white;
+    transform: scale(1.05);
+}
+
+.continue-button.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.hidden.show {
+    display: block;
+    opacity: 1;
+}
+
+.guess-container {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
+.guess-container.show {
+    opacity: 1;
+}
+
+.guess-title {
+    font-size: 32px;
+    color: #ff4b6e;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.guess-subtitle {
+    font-size: 24px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.button-container {
+    display: none;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.button-container.show {
+    opacity: 1;
+}
+
+.letter-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.letter-box.show {
+    opacity: 1;
+    display: flex;
+}
+
+.letter-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.letter-box.show .letter-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.letter-content h2 {
+    color: #ff4b6e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.letter-text {
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+}
+
+.close-button:hover {
+    color: #ff4b6e;
+}
+
+/* Add these media queries at the end of your CSS file */
+
+@media screen and (max-width: 768px) {
+    .typewriter {
+        font-size: 20px; /* Slightly smaller font for mobile */
+    }
+
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 10px;
+    }
+
+    .continue-button {
+        padding: 12px 25px;
+        font-size: 18px;
+        width: 200px; /* Fixed width for mobile */
+    }
+
+    .letter-content {
+        width: 85%;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .letter-text {
+        font-size: 16px;
+    }
+
+    .guess-title {
+        font-size: 24px;
+        top: 30px;
+    }
+
+    .guess-subtitle {
+        font-size: 16px;
+    }
+
+    .guess-container {
+        top: 50%;
+        width: 90%;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .typewriter {
+        font-size: 18px;
+    }
+
+    .continue-button {
+        width: 180px;
+        font-size: 16px;
+    }
+}
+
+/* Add these styles for the photos section */
+.hint-text {
+    font-size: 20px;
+    color: #666;
+    margin: 40px 0 20px;
+    text-align: center;
+}
+
+.photos-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    padding: 0 20px;
+}
+
+.photo-item {
+    flex: 1;
+    max-width: 300px;
+    text-align: center;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-item img:hover {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    margin-top: 10px;
+    color: #666;
+    font-size: 16px;
+}
+
+/* Add this to your media queries for mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .photos-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .photo-item {
+        width: 80%;
+        max-width: none;
+    }
+
+    .hint-text {
+        font-size: 18px;
+        margin: 30px 0 15px;
+    }
+}
+
+/* Add these styles for the hint buttons and content */
+.hint-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.hint-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ff4b6e;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.hint-button:hover {
+    transform: scale(1.05);
+}
+
+.hint-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-header h3 {
+    color: #ff4b6e;
+    margin: 0;
+    font-size: 24px;
+}
+
+.close-hint {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+}
+
+.close-hint:hover {
+    color: #ff4b6e;
+}
+
+.content-body {
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+    padding: 0 15px;
+    margin: 0;
+    text-align: center;
+}
+
+.content-body img {
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 10px;
+}
+
+.content-body p {
+    margin: 15px 0;
+    line-height: 1.6;
+}
+
+/* Style the scrollbar */
+.content-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.content-body::-webkit-scrollbar-thumb {
+    background: #ff4b6e;
+    border-radius: 4px;
+}
+
+.content-body::-webkit-scrollbar-thumb:hover {
+    background: #ff3356;
+}
+
+/* Mobile responsiveness for hint buttons */
+@media screen and (max-width: 768px) {
+    .hint-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .hint-button {
+        width: 200px;
+    }
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.content-body {
+    max-width: 800px;  /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.content-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+}
+
+.content-body p {
+    margin-bottom: 20px;
+}
+
+/* Add these styles for the reveal content */
+.reveal-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding: 20px;
+    text-align: center;
+}
+
+.reveal-content.show {
+    opacity: 1;
+}
+
+.reveal-title {
+    font-size: 36px;
+    color: #ff4b6e;
+    margin-bottom: 20px;
+    animation: popIn 0.5s ease-out forwards;
+}
+
+.reveal-text {
+    font-size: 24px;
+    color: #333;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.reveal-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Update the final reveal styles */
+.final-reveal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: fadeIn 1s ease-out;
 }
 
-.reveal-button:hover {
-    background-color: #0056b3;
+.final-content {
+    text-align: center;
+    margin-top: 100px;
 }
 
-.hint-card {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    padding: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.final-message {
+    font-size: 48px;
+    color: #ff4b6e;
+    margin-bottom: 40px;
+    animation: popIn 0.8s ease-out;
 }
 
-.hint-content {
-    max-height: 0;
+.final-subtitle {
+    font-size: 24px;
+    color: #333;
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add this to your existing final reveal styles */
+.second-message {
+    animation: fadeIn 1s ease-out 1.6s both; /* Delayed animation for the third line */
+    margin-top: 20px;
+}
+
+/* Update background photos styles */
+.background-photos {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: -2;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    padding: 0 15px;
-    margin-top: 10px;
+}
+
+.photo-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 32%;
+    height: 100vh;
+    padding: 10px;
+}
+
+.photo-column img {
+    width: 100%;
+    height: calc(33.33vh - 20px);
+    object-fit: cover;
+    border-radius: 15px;
+    opacity: 0.7; /* Increased opacity from 0.4 to 0.7 */
+    transition: opacity 0.3s ease;
+    margin: 0;
+}
+
+.photo-column img:hover {
+    opacity: 1; /* Full opacity on hover */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); /* Reduced overlay opacity from 0.8 to 0.6 */
+    z-index: -1;
+}
+
+/* Update existing container styles to ensure content is visible */
+.typewriter-container, 
+.guess-container, 
+.letter-box {
+    position: relative;
+    z-index: 1;
+}
+
+/* Split layout styles */
+.split-layout {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;  /* Previene lo scroll */
+}
+
+/* Left side with photos */
+.photos-side {
+    width: 40%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+    background: rgba(245, 247, 250, 0.9);
+    box-sizing: border-box;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.photos-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    aspect-ratio: 1;
+}
+
+/* Right side with content */
+.content-side {
+    width: 60%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+/* Update heart animation container and add heart shape */
+.heart-container {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.heart-shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 28px;
+    animation: moveAlongHeart 20s infinite linear;
+}
+
+@keyframes moveAlongHeart {
+    0% {
+        transform: rotate(0deg) translate(16px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translate(16px) rotate(-360deg);
+    }
+}
+
+/* Position hearts along heart curve */
+.floating-heart:nth-child(1) { left: 50%; top: 30%; }
+.floating-heart:nth-child(2) { left: 60%; top: 32%; }
+.floating-heart:nth-child(3) { left: 70%; top: 38%; }
+.floating-heart:nth-child(4) { left: 75%; top: 45%; }
+.floating-heart:nth-child(5) { left: 78%; top: 55%; }
+.floating-heart:nth-child(6) { left: 75%; top: 65%; }
+.floating-heart:nth-child(7) { left: 70%; top: 72%; }
+.floating-heart:nth-child(8) { left: 60%; top: 78%; }
+.floating-heart:nth-child(9) { left: 50%; top: 80%; }
+.floating-heart:nth-child(10) { left: 40%; top: 78%; }
+.floating-heart:nth-child(11) { left: 30%; top: 72%; }
+.floating-heart:nth-child(12) { left: 25%; top: 65%; }
+.floating-heart:nth-child(13) { left: 22%; top: 55%; }
+.floating-heart:nth-child(14) { left: 25%; top: 45%; }
+.floating-heart:nth-child(15) { left: 30%; top: 38%; }
+.floating-heart:nth-child(16) { left: 40%; top: 32%; }
+.floating-heart:nth-child(17) { left: 45%; top: 35%; }
+.floating-heart:nth-child(18) { left: 55%; top: 35%; }
+.floating-heart:nth-child(19) { left: 65%; top: 42%; }
+.floating-heart:nth-child(20) { left: 68%; top: 50%; }
+.floating-heart:nth-child(21) { left: 65%; top: 58%; }
+
+/* Add this for better heart shape */
+.heart-path {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    clip-path: path('M0,0 C0,0 50,0 50,-50 C50,-100 0,-100 0,-50 C0,-100 -50,-100 -50,-50 C-50,0 0,0 0,0 Z');
+}
+
+/* Update typewriter container position */
+.typewriter-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    background: transparent;
+    padding: 20px;
+    margin-top: -20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Keep your existing styles for typewriter, buttons, etc. but update the positioning */
+.typewriter {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: 30px;
+}
+
+.circle-container {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.circle-heart {
+    position: absolute;
+    font-size: 24px;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+    opacity: 0;
+    animation: moveToHeart 0.5s ease-out forwards;
+}
+
+@keyframes moveToHeart {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1);
+        opacity: 1;
+    }
+}
+
+.continue-button:last-child { /* Targeting the second continue button specifically */
+    padding: 10px 20px; /* Adjusted padding for smaller button */
+    font-size: 16px; /* Adjusted font size for smaller button */
+}
+
+/* Assicuriamoci che il container del testo sia sopra l'animazione */
+.typewriter-container {
+    z-index: 2;
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.content-side {
+    width: 60%;
+    height: 100%;
+    background: white;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Aggiorna gli stili per l'animazione dei cuori */
+.heart-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.heart {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0;
+    transform: scale(0);
+    animation: appearHeart 2s ease-out forwards, pulseHeart 1.5s ease-in-out infinite;
+    animation-delay: 0s, 2s; /* Il pulse inizia dopo che appearHeart è finito */
+}
+
+@keyframes appearHeart {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseHeart {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Aggiorna gli stili del contenitore del testo */
+.typewriter-container {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    top: 42%; /* Posizione fissa verticale */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
     opacity: 0;
 }
 
-.hint-card.active .hint-content {
+.typewriter {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    border-right: 2px solid #333;
+    width: 0;
+    overflow: hidden;
+    display: inline-block; /* Aggiunto per mantenere il testo centrato durante l'animazione */
+}
+
+.button-container {
+    display: none;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px; /* Ridotto il margine superiore */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Stili per la finestra modale */
+.letter-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.letter-modal.show {
     opacity: 1;
-    max-height: 500px !important;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-in;
+    display: flex;
+}
+
+.letter-content {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.letter-modal.show .letter-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #1e3c72;
+    padding: 5px;
+}
+
+.letter-content h2 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.letter-text {
+    line-height: 1.6;
+    color: #333;
+}
+
+.letter-text p {
+    margin-bottom: 15px;
+}
+
+/* Media queries per dispositivi mobili */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-y: auto; /* Permette lo scroll su mobile */
+        height: 100%;
+        min-height: 100vh;
+    }
+
+    .split-layout {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .photos-side {
+        width: 100%;
+        height: 40vh;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .photos-wrapper {
+        display: flex;
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: 100%;
+    }
+
+    .photos-wrapper img {
+        min-width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .content-side {
+        width: 100%;
+        height: 60vh;
+        padding: 20px;
+    }
+
+    .button-container {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .continue-button {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    /* Stili per i punti di navigazione */
+    .navigation-dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+    }
+
+    .dot.active {
+        background: white;
+    }
+
+    /* Stili per il modal */
+    .letter-modal {
+        padding: 15px;
+    }
+
+    .letter-content {
+        width: 90%;
+        max-height: 80vh;
+        padding: 20px;
+    }
+}
+
+/* Per schermi molto piccoli */
+@media screen and (max-width: 480px) {
+    .typewriter {
+        font-size: 20px;
+    }
+
+    .continue-button {
+        width: 180px;
+        font-size: 14px;
+    }
+
+    .photos-side {
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .photos-side img {
+        height: 25vh;
+    }
+}
+
+/* Aggiungi questi stili alla fine del file style.css */
+
+.regalo-container {
+    min-height: 100vh;
+    background: white;
+    overflow-x: hidden; /* Previene lo scroll orizzontale */
+}
+
+.regalo-split-layout {
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
+    align-items: flex-start; /* Allinea dall'alto */
+    margin: 0;
+    padding: 0;
+}
+
+.puzzle-side, .regalo-content-side {
+    width: 50%;
+    padding: 40px; /* Padding uniforme per entrambi i lati */
+    box-sizing: border-box;
+    background: white;
+}
+
+.puzzle-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: transparent;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%; /* Cambiato da fit-content a 100% */
+    max-width: 500px; /* Aggiungi una larghezza massima */
+    aspect-ratio: 1.5; /* Mantiene le proporzioni */
+    box-sizing: border-box;
+    margin-top: 20px; /* Aggiungi un margine superiore uniforme */
+}
+
+.puzzle-piece {
+    width: 100% !important; /* Sovrascrivi gli stili inline */
+    height: 100% !important;
+    aspect-ratio: 1.5;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease;
+    background-size: 300% 300% !important; /* Aggiustato per le dimensioni corrette */
+}
+
+.puzzle-title, .hints-title {
+    color: #1e3c72;
+    margin: 0; /* Rimuovi tutti i margini */
+    padding: 0; /* Rimuovi tutti i padding */
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.2;
+    height: 40px; /* Altezza fissa per entrambi i titoli */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hints-container {
+    padding: 0; /* Rimuovi il padding */
+    margin-top: 20px; /* Aggiungi un margine superiore uniforme */
+}
+
+.hint-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.hint-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .hint-card h3 {
+    color: #1e3c72;
     margin: 0;
-    color: #333;
-    position: relative;
-    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.hint-card h3::after {
-    content: '+';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+.hint-toggle {
+    font-size: 12px;
     transition: transform 0.3s ease;
 }
 
-.hint-card.active h3::after {
-    transform: translateY(-50%) rotate(45deg);
+.hint-card.active .hint-toggle {
+    transform: rotate(180deg);
+}
+
+.hint-content {
+    padding: 15px 0 0;
+    color: #666;
+    line-height: 1.6;
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.hint-content.show {
+    max-height: 500px;
+    opacity: 1;
+    padding: 15px 0;
 }
 
 .hint-content p {
-    margin: 10px 0;
+    margin: 8px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-button:hover {
+    color: #ff4b6e;
+}
+
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.reveal-button-container {
+    text-align: center;
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.reveal-button {
+    padding: 10px 25px;
+    font-size: 16px;
+    background-color: transparent;
+    color: #1e3c72;
+    border: 2px solid #1e3c72;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reveal-button:hover {
+    background-color: #1e3c72;
+    color: white;
+    transform: scale(1.05);
+}
+
+.reveal-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+.reveal-modal.show {
+    opacity: 1;
+}
+
+.reveal-content {
+    text-align: center;
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.reveal-modal.show .reveal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.reveal-text {
+    padding: 20px;
+}
+
+.reveal-title {
+    font-size: 4em;
+    color: #1e3c72;
+    margin-bottom: 0.5em;
+}
+
+.reveal-subtitle {
+    font-size: 1.5em;
     color: #666;
 }
 
