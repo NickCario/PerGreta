@@ -51,7 +51,7 @@ body {
 /* Contenitore typewriter */
 .typewriter-container {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -63,7 +63,7 @@ body {
 }
 
 .typewriter {
-    font-size: 28px;
+    font-size: 24px;
     color: #333;
     margin-bottom: 15px;
     white-space: nowrap;
@@ -103,7 +103,7 @@ body {
     display: none;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 30px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
