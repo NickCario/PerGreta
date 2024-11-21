@@ -18,6 +18,19 @@ body {
     margin-bottom: 20px;
 }
 
+.typewriter {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+    border-right: 2px solid #333;
+    width: 0;
+    overflow: hidden;
+    display: inline-block;
+}
+
 
 .typing {
     animation: typing 3s steps(40, end) forwards,
@@ -738,7 +751,6 @@ html, body {
 
 /* Keep your existing styles for typewriter, buttons, etc. but update the positioning */
 .typewriter {
-    font-size: 2.5rem;
     color: #333;
     margin-bottom: 20px;
     white-space: nowrap;
@@ -873,7 +885,7 @@ html, body {
 }
 
 .typewriter {
-    font-size: 2.5rem;
+    font-size: 28px;
     color: #333;
     margin-bottom: 20px;
     white-space: nowrap;
