@@ -1079,17 +1079,14 @@ html, body {
     display: flex;
     min-height: 100vh;
     flex-wrap: wrap; /* Permette il wrapping su schermi piccoli */
+    align-items: flex-start; /* Allinea dall'alto */
 }
 
-.puzzle-side {
+.puzzle-side, .regalo-content-side {
     width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
     background: rgba(255, 255, 255, 0.8);
-    box-sizing: border-box; /* Importante per il padding */
+    box-sizing: border-box;
 }
 
 .puzzle-board {
@@ -1103,6 +1100,7 @@ html, body {
     max-width: 500px; /* Aggiungi una larghezza massima */
     aspect-ratio: 1.5; /* Mantiene le proporzioni */
     box-sizing: border-box;
+    margin-top: 20px; /* Aggiungi un margine superiore uniforme */
 }
 
 .puzzle-piece {
@@ -1115,43 +1113,17 @@ html, body {
     background-size: 300% 300% !important; /* Aggiustato per le dimensioni corrette */
 }
 
-.regalo-content-side {
-    width: 50%;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.8);
-    box-sizing: border-box;
-}
-
-/* Media queries per la responsività */
-@media screen and (max-width: 768px) {
-    .regalo-split-layout {
-        flex-direction: column;
-    }
-
-    .puzzle-side,
-    .regalo-content-side {
-        width: 100%;
-        min-height: 50vh;
-    }
-
-    .puzzle-board {
-        max-width: 90vw;
-        aspect-ratio: 1.5;
-    }
-}
-
-/* Stili per gli indizi */
-.hints-container {
-    padding: 20px;
-    padding-top: 0;
-}
-
-.hints-title {
+.puzzle-title, .hints-title {
     color: #1e3c72;
-    margin-bottom: 30px;
+    margin: 20px 0;  /* Margini uniformi */
     text-align: center;
     font-size: 24px;
     line-height: 1.2;
+    padding-top: 20px; /* Padding uniforme dall'alto */
+}
+
+.hints-container {
+    padding: 0 20px; /* Rimuovi il padding top e mantieni solo quello laterale */
 }
 
 .hint-card {
@@ -1208,16 +1180,6 @@ html, body {
 
 .hidden {
     display: none;
-}
-
-/* Aggiungi questi stili per il titolo */
-.puzzle-title {
-    color: #1e3c72;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 24px;
-    line-height: 1.2;
 }
 
 .modal {
