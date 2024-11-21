@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
             letterBox.classList.add('letter-box');
             letterBox.style.position = 'fixed';
             letterBox.style.display = 'flex';
-            letterBox.style.justifyContent = 'center';
-            letterBox.style.alignItems = 'center';
+            letterBox.style.justifyContent = 'flex-start';
+            letterBox.style.alignItems = 'flex-start';
             
             letterBox.innerHTML = `
                 <div class="letter-content">
@@ -30,11 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Posiziona la letter-content esattamente dove si trova il pulsante
             const letterContent = letterBox.querySelector('.letter-content');
-            letterContent.style.position = 'absolute';
+            letterContent.style.position = 'fixed';
             letterContent.style.top = `${rect.top}px`;
             letterContent.style.left = `${rect.left}px`;
             letterContent.style.width = `${rect.width}px`;
             letterContent.style.transform = 'none';
+            letterContent.style.zIndex = '1001';
             
             // Mostra la letter-box con un piccolo delay per l'animazione
             requestAnimationFrame(() => {
