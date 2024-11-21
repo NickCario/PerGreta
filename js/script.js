@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const texts = document.querySelectorAll('.typewriter');
     const buttonContainer = document.querySelector('.button-container');
@@ -77,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     modal.classList.add('show');
                 }, 10);
-            } else if (button.textContent === 'Regalo') {
+            } else if (button.textContent === 'Il tuo regalo') {
                 // Reindirizza alla pagina del regalo
                 window.location.href = 'regalo.html';
             }
