@@ -2,11 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const hintCards = document.querySelectorAll('.hint-card');
 
     hintCards.forEach(card => {
-        const toggle = card.querySelector('.hint-toggle');
-        const content = card.querySelector('.hint-content');
-
-        toggle.addEventListener('click', function() {
-            // Crea una letter-box come quella del pulsante "per te"
+        card.addEventListener('click', function() {
+            const content = card.querySelector('.hint-content');
+            
+            // Crea una letter-box
             const letterBox = document.createElement('div');
             letterBox.classList.add('letter-box');
             
@@ -23,9 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.appendChild(letterBox);
             
             // Mostra la letter-box con un piccolo delay per l'animazione
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 letterBox.classList.add('show');
-            }, 10);
+            });
 
             // Gestisci la chiusura
             const closeButton = letterBox.querySelector('.close-button');
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 letterBox.classList.remove('show');
                 setTimeout(() => {
                     document.body.removeChild(letterBox);
-                }, 500);
+                }, 300);
             });
 
             // Chiudi anche cliccando fuori dalla lettera
@@ -42,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     letterBox.classList.remove('show');
                     setTimeout(() => {
                         document.body.removeChild(letterBox);
-                    }, 500);
+                    }, 300);
                 }
             });
         });

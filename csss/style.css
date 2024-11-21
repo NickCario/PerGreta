@@ -147,23 +147,31 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
     z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .letter-box.show {
     opacity: 1;
+    display: flex;
 }
 
 .letter-content {
-    background-color: white;
-    padding: 20px;
+    background: white;
+    padding: 30px;
     border-radius: 15px;
-    max-width: 90%;
-    height: auto;
+    max-width: 500px;
+    width: 90%;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.letter-box.show .letter-content {
+    transform: scale(1);
+    opacity: 1;
 }
 
 .letter-content h2 {
